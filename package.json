@@ -1,0 +1,19 @@
+{
+  "name": "node-news-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlackCubes/node-news-api.git"
+  },
+  "author": "Elias Gutierrez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BlackCubes/node-news-api/issues"
+  },
+  "homepage": "https://github.com/BlackCubes/node-news-api#readme"
+}
