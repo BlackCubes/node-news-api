@@ -6,8 +6,9 @@ const rateLimit = require('express-rate-limit');
 const xss = require('xss-clean');
 const compression = require('compression');
 
-const { AppError } = require('./utils');
 const { globalErrorHandler } = require('./controllers');
+const { newsapiRouter } = require('./routes');
+const { AppError } = require('./utils');
 
 const app = express();
 
@@ -55,6 +56,7 @@ app.get('/', (req, res) => {
     'Hello! Welcome to this simple API on simply getting the News API for your FrontEnd application!'
   );
 });
+app.use('/api/v1/node-newsapi', newsapiRouter);
 
 // Errors
 // --- unknown routes
