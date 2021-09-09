@@ -6,6 +6,9 @@ const rateLimit = require('express-rate-limit');
 const xss = require('xss-clean');
 const compression = require('compression');
 
+const { AppError } = require('./utils');
+const { globalErrorHandler } = require('./controllers');
+
 const app = express();
 
 // Proxy
@@ -52,5 +55,14 @@ app.get('/', (req, res) => {
     'Hello! Welcome to this simple API on simply getting the News API for your FrontEnd application!'
   );
 });
+
+// Errors
+// --- unknown routes
+app.all('*', (req, res, next) =>
+  next(new AppError(`Could not find ${req.originalUrl} on this server!`, 404))
+);
+
+// --- global errors
+app.use(globalErrorHandler);
 
 module.exports = app;
