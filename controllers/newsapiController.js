@@ -23,11 +23,10 @@ exports.topHeadlines = catchAsync(async (req, res, next) => {
     const data = await newsapi.v2.topHeadlines(filteredBody);
 
     res.status(200).json({
-      status: 'success',
-      data,
+      ...data,
     });
   } catch (error) {
-    return next(new AppError(error.message, 400));
+    return next(new AppError(error.message, 500));
   }
 });
 
@@ -41,11 +40,10 @@ exports.everything = catchAsync(async (req, res, next) => {
     const data = await newsapi.v2.everything(filteredBody);
 
     res.status(200).json({
-      status: 'success',
-      data,
+      ...data,
     });
   } catch (error) {
-    return next(new AppError(error.message, 400));
+    return next(new AppError(error.message, 500));
   }
 });
 
@@ -59,10 +57,9 @@ exports.sources = catchAsync(async (req, res, next) => {
     const data = await newsapi.v2.sources(filteredBody);
 
     res.status(200).json({
-      status: 'success',
-      data,
+      ...data,
     });
   } catch (error) {
-    return next(new AppError(error.message, 400));
+    return next(new AppError(error.message, 500));
   }
 });
