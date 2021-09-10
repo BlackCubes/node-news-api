@@ -10,6 +10,7 @@ router
 
 router
   .route('/everything')
+  .get(newsapiController.confirmApikey, newsapiController.getEverything)
   .post(newsapiController.confirmApikey, newsapiController.postEverything);
 
 router

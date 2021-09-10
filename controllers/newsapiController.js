@@ -52,6 +52,24 @@ exports.postTopHeadlines = catchAsync(async (req, res, next) => {
 });
 
 // EVERYTHING
+// -- GET method
+exports.getEverything = catchAsync(async (req, res, next) => {
+  const { apiKey } = sanitize(req.query);
+  const filteredQuery = sanitize(filterObj(req.query, 'apiKey'));
+
+  const newsapi = new NewsAPI(apiKey);
+
+  try {
+    const data = await newsapi.v2.everything(filteredQuery);
+
+    res.status(200).json({
+      ...data,
+    });
+  } catch (error) {
+    return next(new AppError(error.message, 500));
+  }
+});
+
 // -- POST method
 exports.postEverything = catchAsync(async (req, res, next) => {
   const { apiKey } = sanitize(req.body);
