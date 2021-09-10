@@ -2,7 +2,8 @@ const NewsAPI = require('newsapi');
 const { AppError, catchAsync, filterObj, sanitize } = require('../utils');
 
 exports.confirmApikey = (req, res, next) => {
-  const { apiKey } = sanitize(req.body);
+  const { apiKey } =
+    req.method === 'POST' ? sanitize(req.body) : sanitize(req.query);
 
   if (!apiKey) {
     return next(
