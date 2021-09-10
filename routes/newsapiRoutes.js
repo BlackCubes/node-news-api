@@ -3,22 +3,19 @@ const { newsapiController } = require('../controllers');
 
 const router = express.Router();
 
-router.post(
-  '/top-headlines',
-  newsapiController.confirmApikey,
-  newsapiController.topHeadlines
-);
+router
+  .route('/top-headlines')
+  .get(newsapiController.confirmApikey, newsapiController.getTopHeadlines)
+  .post(newsapiController.confirmApikey, newsapiController.postTopHeadlines);
 
-router.post(
-  '/everything',
-  newsapiController.confirmApikey,
-  newsapiController.everything
-);
+router
+  .route('/everything')
+  .get(newsapiController.confirmApikey, newsapiController.getEverything)
+  .post(newsapiController.confirmApikey, newsapiController.postEverything);
 
-router.post(
-  '/sources',
-  newsapiController.confirmApikey,
-  newsapiController.sources
-);
+router
+  .route('/sources')
+  .get(newsapiController.confirmApikey, newsapiController.getSources)
+  .post(newsapiController.confirmApikey, newsapiController.postSources);
 
 module.exports = router;
