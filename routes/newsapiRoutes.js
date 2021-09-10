@@ -15,6 +15,7 @@ router
 
 router
   .route('/sources')
+  .get(newsapiController.confirmApikey, newsapiController.getSources)
   .post(newsapiController.confirmApikey, newsapiController.postSources);
 
 module.exports = router;
