@@ -5,6 +5,7 @@ const router = express.Router();
 
 router
   .route('/top-headlines')
+  .get(newsapiController.confirmApikey, newsapiController.getTopHeadlines)
   .post(newsapiController.confirmApikey, newsapiController.postTopHeadlines);
 
 router

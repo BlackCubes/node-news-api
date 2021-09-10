@@ -14,6 +14,26 @@ exports.confirmApikey = (req, res, next) => {
   next();
 };
 
+// TOP-HEADLINES
+// -- GET method
+exports.getTopHeadlines = catchAsync(async (req, res, next) => {
+  const { apiKey } = sanitize(req.query);
+  const filteredQuery = sanitize(filterObj(req.query, 'apiKey'));
+
+  const newsapi = new NewsAPI(apiKey);
+
+  try {
+    const data = await newsapi.v2.topHeadlines(filteredQuery);
+
+    res.status(200).json({
+      ...data,
+    });
+  } catch (error) {
+    return next(new AppError(error.message, 500));
+  }
+});
+
+// -- POST method
 exports.postTopHeadlines = catchAsync(async (req, res, next) => {
   const { apiKey } = sanitize(req.body);
   const filteredBody = sanitize(filterObj(req.body, 'apiKey'));
@@ -31,6 +51,8 @@ exports.postTopHeadlines = catchAsync(async (req, res, next) => {
   }
 });
 
+// EVERYTHING
+// -- POST method
 exports.postEverything = catchAsync(async (req, res, next) => {
   const { apiKey } = sanitize(req.body);
   const filteredBody = sanitize(filterObj(req.body, 'apiKey'));
@@ -48,6 +70,8 @@ exports.postEverything = catchAsync(async (req, res, next) => {
   }
 });
 
+// SOURCES
+// -- POST method
 exports.postSources = catchAsync(async (req, res, next) => {
   const { apiKey } = sanitize(req.body);
   const filteredBody = sanitize(filterObj(req.body, 'apiKey'));
