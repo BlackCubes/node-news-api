@@ -13,7 +13,7 @@ exports.confirmApikey = (req, res, next) => {
   next();
 };
 
-exports.topHeadlines = catchAsync(async (req, res, next) => {
+exports.postTopHeadlines = catchAsync(async (req, res, next) => {
   const { apiKey } = sanitize(req.body);
   const filteredBody = sanitize(filterObj(req.body, 'apiKey'));
 
@@ -30,7 +30,7 @@ exports.topHeadlines = catchAsync(async (req, res, next) => {
   }
 });
 
-exports.everything = catchAsync(async (req, res, next) => {
+exports.postEverything = catchAsync(async (req, res, next) => {
   const { apiKey } = sanitize(req.body);
   const filteredBody = sanitize(filterObj(req.body, 'apiKey'));
 
@@ -47,7 +47,7 @@ exports.everything = catchAsync(async (req, res, next) => {
   }
 });
 
-exports.sources = catchAsync(async (req, res, next) => {
+exports.postSources = catchAsync(async (req, res, next) => {
   const { apiKey } = sanitize(req.body);
   const filteredBody = sanitize(filterObj(req.body, 'apiKey'));
 
